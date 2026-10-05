@@ -57,6 +57,9 @@ class BasePage:
         element.clear()
         element.send_keys(value)
 
+    def get_window_handles(self):
+        return self.driver.window_handles
+
     def switch_to_new_window(self, old_handles):
         self.wait.until(EC.new_window_is_opened(old_handles))
         new_handle = next(

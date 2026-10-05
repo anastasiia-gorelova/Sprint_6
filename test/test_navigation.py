@@ -18,9 +18,9 @@ class TestNavigation:
     def test_yandex_logo_opens_yandex_in_new_window(self, driver):
         page = OrderPage(driver)
         page.open(ORDER_URL)
-        old_handles = driver.window_handles
+        old_handles = page.get_window_handles()
         page.click_yandex_logo()
         page.switch_to_new_window(old_handles)
 
-        assert len(driver.window_handles) == len(old_handles) + 1
+        assert len(page.get_window_handles()) == len(old_handles) + 1
         assert page.wait_for_url(YANDEX_URL) == YANDEX_URL
